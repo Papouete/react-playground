@@ -1,4 +1,5 @@
-const helloWorld = React.createElement('h1', {}, 'Hello world!');
+const name = 'FLORIAN';
+const element = <h1>SALUT A TOI, {name}</h1>;
 
 
 // mauvaise pratique
@@ -6,4 +7,7 @@ const helloWorld = React.createElement('h1', {}, 'Hello world!');
 
 //ReactDOM.render(helloWorld, document.body);
 
-ReactDOM.render(helloWorld, document.querySelector('#app'));
+ReactDOM.render(
+    element, 
+    document.querySelector('#app')
+);
