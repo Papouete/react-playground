@@ -82,18 +82,40 @@ function Clock(props) {
     }, []);
     
     const [date, setDate] = React.useState(new Date());
+    const [colorText, setColorText] = React.useState("grey");
+    const defaultInterval = React.useRef();
 
     const tick = () => {
-        setInterval(() => {
+        defaultInterval.current = setInterval(() => {
             setDate(new Date())
         }, 1000)
-    }
-    
+    };
+
+    const randomColor = () => {
+        var randomColor = `#${Math.floor(Math.random()*16777215).toString(16)}`;
+        setColorText(randomColor);
+    };
+
+    // const defaultColor = () => {
+    //     setColorText('grey');
+    // };
+
+    const stop = (e) => {
+        e.preventDefault();
+        clearInterval(defaultInterval.current);
+    };
+    const start = (e) => {
+        e.preventDefault();
+        tick();
+    };
 
     return (
         <div>
             <h1>Hello world</h1>
-            <h2>Il est {date.toLocaleTimeString()}.</h2>
+            <h2 style = {{color:colorText}}>Il est {date.toLocaleTimeString()}.</h2>
+            <button onClick={start}>start</button>
+            <button onClick={stop}>stop</button>
+            <button onClick={randomColor}>randomColor</button>
         </div>
         );
 }
