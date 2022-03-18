@@ -282,3 +282,61 @@ function MultiForm(props) {
 }
 
 ReactDOM.render(<MultiForm />, document.querySelector('#app'));
+
+
+
+
+
+
+
+////// CORRIGER PROF ///////
+
+
+function App(props) {
+    const [inputs, setInputs] = React.useState({
+      text: "",
+      area: "",
+      test: "",
+      poulpe: "",
+    });
+  
+    const handleChange = (e) => {
+      console.log(e)
+      let { name, value } = e.target;
+      setInputs((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    };
+  
+    return (
+      <div>
+        <input
+          type="text"
+          name="text"
+          value={inputs.text}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="test"
+          value={inputs.test}
+          onChange={handleChange}
+        />
+        <textarea
+          name="area"
+          value={inputs.area}
+          onChange={handleChange}
+        ></textarea>
+        <textarea
+          name="poulpe"
+          value={inputs.poulpe}
+          onChange={handleChange}
+        ></textarea>
+      </div>
+    );
+  }
+  
+  ReactDOM.render(<App />, document.querySelector("#app"));
+  
+  console.log(typeof App);
