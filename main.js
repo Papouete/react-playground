@@ -37,3 +37,46 @@ ReactDOM.render(
   <Greeting isLoggedIn={false} />,
   document.querySelector('#app')
 );
+
+
+
+
+// CORRECTION 
+
+function UserGreeting({toggleIsLoggedIn}) {
+    return (
+      <React.Fragment>
+        <h1>Bienvenue !</h1>
+        <button onClick={toggleIsLoggedIn}>Se déconnecter</button>
+      </React.Fragment>
+    );
+  }
+  
+  function GuestGreeting({toggleIsLoggedIn}) {
+    return (
+      <React.Fragment>
+        <h1>Veuillez vous inscrire.</h1>
+        <button onClick={toggleIsLoggedIn}>Se connecter</button>
+      </React.Fragment>
+    );
+  }
+  
+  function Greeting(props) {
+    const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  
+    const toggleIsLoggedIn = () => {
+      setIsLoggedIn((prevState) => !prevState);
+    };
+  
+    return (
+      <React.Fragment>
+        {isLoggedIn ? <UserGreeting toggleIsLoggedIn={toggleIsLoggedIn} /> : <GuestGreeting toggleIsLoggedIn={toggleIsLoggedIn}/>}
+      </React.Fragment>
+    );
+  }
+  
+  ReactDOM.render(
+    // Essayez de changer ça vers isLoggedIn={true} :
+    <Greeting />,
+    document.getElementById("app")
+  );
