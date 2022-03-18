@@ -7,8 +7,6 @@ function App(props) {
 
     const [users, setUsers] = React.useState([]);
 
-
-
     return(
         <React.Fragment>
         {
@@ -22,7 +20,6 @@ function App(props) {
 
 function UserCard({user}) {
     
-
     return (
         <ul className="user-card">
             <li>{user.name}</li>
