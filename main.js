@@ -126,3 +126,57 @@ ReactDOM.render(<Clock />, document.querySelector('#app'));
 
 
 
+
+////////////// CORRECTION PROF ///////////////
+
+function Clock(props) {
+    const [color, setColor] = React.useState('teal');
+    const [date, setDate] = React.useState(new Date());
+    const intervalRef = React.useRef();
+
+    React.useEffect(() => {        
+        tick();     
+    }, []);
+    
+   
+
+    const tick = () => {
+        intervalRef.current = setInterval(() => {
+            setDate(new Date())
+        }, 1000);
+    }
+
+    const changeColor = (reset) => {
+        if(reset){
+            setColor('black')
+            return
+        }
+        setColor(`#${Math.floor(Math.random() * 16777215).toString(16)}`)
+    }
+
+    const stopClock = () => {
+        clearInterval(intervalRef.current);
+    }    
+
+    return (
+        <div>
+            <h1>Hello world</h1>
+            <h2 style={{ color }}>Il est {date.toLocaleTimeString()}.</h2>
+            <div>
+            <button onClick={() => changeColor()}>Change color</button>
+            <button onClick={() => changeColor(true)}>Reset color</button>
+            </div>
+            <div>
+            <button onClick={stopClock}>Stop clock</button>
+            <button onClick={tick}>Start clock</button>
+            </div>
+        </div>
+        );
+}
+
+ReactDOM.render(<Clock />, document.querySelector('#app'));
+
+
+
+
+
